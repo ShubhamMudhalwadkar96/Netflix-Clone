@@ -18,7 +18,7 @@ public class JwtUtil {
     // 30 Days, 24 hrs, 60 min, 60 sec and 1000 millisecond
     private static final long JWT_TOKEN_VALIDITY = 30L * 24 * 60 * 60 * 1000;
 
-    @Value("${jwt.secret:defaultSecretKeyForNetflixClone}")
+    @Value("${jwt.secret:defaultSecretKeyForNetflixClonedefaultSecretKeyForNetflixClone}")
     private String secret;
 
     /**
@@ -139,8 +139,8 @@ public class JwtUtil {
      */
     public Boolean validateToken(String token) {
         try {
-            getAllClaimFromToken(token);
-            return isTokenExpired(token);
+            getAllClaimFromToken(token); // verifies signature
+            return !isTokenExpired(token);
         } catch (Exception e) {
             return false;
         }
